@@ -12,7 +12,9 @@ const removeName = () => emit("remove", props.index);
 <template>
   <div class="card">
     <h4>{{ name }}</h4>
-    <p @click="removeName">x</p>
+    <p @click="removeName">
+      <font-awesome-icon :icon="['fas', 'trash']" />
+    </p>
   </div>
 </template>
 
@@ -34,9 +36,10 @@ const removeName = () => emit("remove", props.index);
   }
 
   p {
+    font-size: 1rem;
     position: absolute;
-    top: -20%;
-    left: 90%;
+    top: -12%;
+    left: 88%;
     cursor: pointer;
     color: $secondary-text-color;
   }
