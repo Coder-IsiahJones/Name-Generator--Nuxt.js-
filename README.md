@@ -14,6 +14,8 @@ npm i --save @fortawesome/free-solid-svg-icons
 npm i @fortawesome/vue-fontawesome
 
 npm i -D sass
+
+npm install --save-dev @nuxtjs/color-mode
 ```
 
 # Nuxt 3 Minimal Starter
