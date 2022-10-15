@@ -110,7 +110,12 @@ const computeSelectedNames = () => {
         Generate
       </button>
     </div>
-    {{ selectedNames }}
+    <div class="cards-container">
+      <div v-for="name in selectedNames" :key="name" class="card">
+        <h4>{{ name }}</h4>
+        <p>x</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -196,6 +201,34 @@ $border-radius: 0.325rem;
     font-size: 1rem;
     margin-top: 1rem;
     cursor: pointer;
+  }
+
+  .cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    gap: 0.5rem;
+
+    .card {
+      position: relative;
+      background-color: $secondary-background-color;
+      border-radius: $border-radius;
+      padding: 0.1rem;
+      width: 12rem;
+      margin: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 200;
+
+      p {
+        position: absolute;
+        top: -20%;
+        left: 90%;
+        cursor: pointer;
+        color: $secondary-text-color;
+      }
+    }
   }
 }
 </style>
