@@ -2,6 +2,7 @@
 interface NameProps {
   name: string;
   index: number;
+  colorMode: string;
 }
 
 const props = defineProps<NameProps>();
@@ -10,9 +11,17 @@ const removeName = () => emit("remove", props.index);
 </script>
 
 <template>
-  <div class="card">
-    <h4>{{ name }}</h4>
-    <p @click="removeName">
+  <div
+    class="card"
+    :class="$colorMode.value === 'dark' ? 'light-bg' : 'dark-bg'"
+  >
+    <h4 :class="$colorMode.value === 'dark' ? 'light-text' : 'dark-text'">
+      {{ name }}
+    </h4>
+    <p
+      :class="$colorMode.value === 'dark' ? 'light-text' : 'dark-text'"
+      @click="removeName"
+    >
       <font-awesome-icon :icon="['fas', 'trash']" />
     </p>
   </div>

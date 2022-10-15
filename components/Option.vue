@@ -12,14 +12,16 @@ interface OptionProps {
     popularity: Popularity;
     length: Length;
   };
+  colorMode: string;
 }
 
 const props = defineProps<OptionProps>();
 
-const computeButtonClasses = (value, index) => {
+const computeButtonClasses = (value, index, colorMode) => {
   const classNames = [];
   if (props.options[props.option.category] === value) {
     classNames.push("option-active");
+    if (colorMode === "light") classNames.push("light-outline");
   }
   if (index === 0) classNames.push("option-left");
   if (index === props.option.buttons.length - 1)
@@ -30,13 +32,15 @@ const computeButtonClasses = (value, index) => {
 
 <template>
   <div class="option-container">
-    <h4>{{ option.title }}</h4>
+    <h4 :class="colorMode === 'dark' ? 'light-text' : 'dark-text'">
+      {{ option.title }}
+    </h4>
     <div class="option-buttons">
       <button
         v-for="(value, index) in option.buttons"
         :key="value"
         class="option"
-        :class="computeButtonClasses(value, index)"
+        :class="computeButtonClasses(value, index, colorMode)"
         @click="options[option.category] = value"
       >
         {{ value }}

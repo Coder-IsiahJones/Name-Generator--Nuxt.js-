@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { Gender, Popularity, Length, names } from "@/data";
 
+type Theme = "light" | "dark";
+const setColorTheme = (newTheme: Theme) => {
+  useColorMode().preference = newTheme;
+};
+
 interface OptionState {
   gender: Gender;
   popularity: Popularity;
@@ -53,19 +58,75 @@ const optionsArray = [
 </script>
 
 <template>
-  <div class="container">
-    <h1>Name Generator</h1>
-    <p>Choose your options and click the <b>"Generate"</b> button below</p>
-    <div class="options-container">
+  <div
+    class="container"
+    :class="$colorMode.value === 'dark' ? 'dark-bg' : 'light-bg'"
+  >
+    <div class="colorMode">
+      <button
+        :class="
+          $colorMode.value === 'dark'
+            ? 'dark-text dark-border'
+            : 'light-text light-border'
+        "
+        @click="
+          setColorTheme($colorMode.preference == 'dark' ? 'light' : 'dark')
+        "
+      >
+        <svg
+          v-if="$colorMode.value == 'dark'"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 text-gray-50"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+          />
+        </svg>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+    <h1 :class="$colorMode.value === 'dark' ? 'dark-text' : 'light-text'">
+      Name Generator
+    </h1>
+    <p :class="$colorMode.value === 'dark' ? 'dark-text' : 'light-text'">
+      Choose your options and click the <b>"Generate"</b> button below
+    </p>
+    <div
+      class="options-container"
+      :class="$colorMode.value === 'dark' ? 'light-bg' : 'dark-bg'"
+    >
       <Option
         v-for="option in optionsArray"
         :key="option.title"
         :option="option"
         :options="options"
+        :colorMode="$colorMode.value"
       />
     </div>
     <div>
-      <button class="primary-btn" @click="computeSelectedNames">
+      <button
+        class="primary-btn"
+        @click="computeSelectedNames"
+        :class="
+          $colorMode.value === 'dark'
+            ? 'light-bg light-text'
+            : 'dark-bg dark-text'
+        "
+      >
         Generate
       </button>
     </div>
@@ -76,6 +137,7 @@ const optionsArray = [
         :name="name"
         @remove="() => removeName(index)"
         :index="index"
+        :colorMode="$colorMode.value"
       />
     </div>
   </div>
@@ -85,9 +147,6 @@ const optionsArray = [
 @import "@/assets/variables.scss";
 
 .container {
-  background-color: $primary-background-color;
-  font-family: Arial, Helvetica, sans-serif;
-  color: $primary-text-color;
   max-width: 50rem;
   margin: 0 auto;
   text-align: center;
@@ -135,6 +194,21 @@ const optionsArray = [
     flex-wrap: wrap;
     margin-top: 3rem;
     gap: 0.5rem;
+  }
+
+  .colorMode {
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
+    svg {
+      height: 3rem;
+      width: 3rem;
+    }
   }
 }
 </style>
