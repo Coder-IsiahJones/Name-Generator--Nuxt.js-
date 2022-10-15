@@ -1,20 +1,5 @@
 <script setup lang="ts">
-enum Gender {
-  GIRL = "Girl",
-  BOY = "Boy",
-  UNISEX = "Unisex",
-}
-
-enum Popularity {
-  TRENDY = "Trendy",
-  UNIQUE = "Unique",
-}
-
-enum Length {
-  ALL = "All",
-  SHORT = "Short",
-  LONG = "Long",
-}
+import { Gender, Popularity, Length, names } from "@/data";
 
 interface OptionState {
   gender: Gender;
@@ -27,6 +12,20 @@ const options = reactive<OptionState>({
   popularity: Popularity.UNIQUE,
   length: Length.LONG,
 });
+
+const selectedNames = ref<string[]>([]);
+
+const computeSelectedNames = () => {
+  const filteredNames = names
+    .filter((name) => name.gender === options.gender)
+    .filter((name) => name.popularity === options.popularity)
+    .filter((name) => {
+      if (options.length === Length.ALL) return true;
+      else return name.length === options.length;
+    });
+
+  selectedNames.value = filteredNames.map((name) => name.name);
+};
 </script>
 
 <template>
@@ -106,7 +105,12 @@ const options = reactive<OptionState>({
         </div>
       </div>
     </div>
-    <button class="primary-btn">Generate</button>
+    <div>
+      <button class="primary-btn" @click="computeSelectedNames">
+        Generate
+      </button>
+    </div>
+    {{ selectedNames }}
   </div>
 </template>
 
