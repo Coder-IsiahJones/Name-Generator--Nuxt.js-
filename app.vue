@@ -185,6 +185,20 @@ const optionsArray = [
     font-size: 1rem;
     margin-top: 1rem;
     cursor: pointer;
+
+    &:hover {
+      background-color: $secondary-background-color !important;
+      outline: 0.15rem solid $primary-background-color !important;
+      color: $secondary-text-color !important;
+    }
+  }
+
+  .primary-btn.light-bg {
+    &:hover {
+      background-color: $primary-background-color !important;
+      outline: 0.15rem solid $secondary-background-color !important;
+      color: $primary-text-color !important;
+    }
   }
 
   .cards-container {
