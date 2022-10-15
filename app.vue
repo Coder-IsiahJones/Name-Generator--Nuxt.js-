@@ -32,7 +32,7 @@ const options = reactive<OptionState>({
 <template>
   <div class="container">
     <h1>Name Generator</h1>
-    <p>Choose your options and click the <b>"Find Names"</b> button below</p>
+    <p>Choose your options and click the <b>"Generate"</b> button below</p>
     <div class="options-container">
       <div class="option-container">
         <h4>1) Choose a gender</h4>
@@ -106,19 +106,21 @@ const options = reactive<OptionState>({
         </div>
       </div>
     </div>
+    <button class="primary-btn">Generate</button>
   </div>
 </template>
 
 <style scoped lang="scss">
-$primary-text-color: #fff;
-$primary-background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-$secondary-background-color: #fff;
-$secondary-text-color: #000;
-$call-to-action-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-$border-radius: 1rem;
+$primary-text-color: #f0edcc;
+$primary-background-color: #02343f;
+$secondary-background-color: #f0edcc;
+$secondary-text-color: #02343f;
+$primary-call-to-action-color: #f0edcc;
+$secondary-call-to-action-color: #02343f;
+$border-radius: 0.325rem;
 
 .container {
-  background-image: $primary-background-color;
+  background-color: $primary-background-color;
   font-family: Arial, Helvetica, sans-serif;
   color: $primary-text-color;
   max-width: 50rem;
@@ -177,8 +179,19 @@ $border-radius: 1rem;
 
     .option-active {
       color: $primary-text-color;
-      background-image: $call-to-action-color;
+      background-color: $secondary-call-to-action-color;
     }
+  }
+
+  .primary-btn {
+    background-color: $primary-call-to-action-color;
+    color: $secondary-text-color;
+    border-radius: $border-radius;
+    border: none;
+    padding: 0.75rem 4rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
   }
 }
 </style>
