@@ -4,6 +4,7 @@
 ```
 Primary Color: #02343F
 Secondary Color: #F0EDCC
+Font Family: Arvo
 ```
 
 # Dependencies
