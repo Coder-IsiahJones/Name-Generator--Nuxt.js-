@@ -6,6 +6,9 @@ Primary Color: #02343F
 Secondary Color: #F0EDCC
 Font Family: Arvo
 ```
+# Desktop Design
+![design_1](https://user-images.githubusercontent.com/32337329/196013388-5e5c669d-5a94-41db-be1f-435e02aef7c5.png)
+![design_2](https://user-images.githubusercontent.com/32337329/196013389-68dd5653-87fb-4720-931d-c2dd6be00e3f.png)
 
 # Dependencies
 ```
