@@ -23,7 +23,11 @@ $border-radius: 0.325rem;
     border-color: $primary-text-color !important;
 }
 
-.light-outline{
+.dark-outline {
+    outline: 0.15rem solid $primary-background-color !important;
+}
+
+.light-outline {
     outline: 1px solid $secondary-background-color !important;
 }
 

@@ -22,6 +22,7 @@ const computeButtonClasses = (value, index, colorMode) => {
   if (props.options[props.option.category] === value) {
     classNames.push("option-active");
     if (colorMode === "light") classNames.push("light-outline");
+    if (colorMode === "dark") classNames.push("dark-outline");
   }
   if (index === 0) classNames.push("option-left");
   if (index === props.option.buttons.length - 1)
@@ -82,7 +83,7 @@ const computeButtonClasses = (value, index, colorMode) => {
     .option-active {
       color: $primary-text-color;
       background-color: $secondary-call-to-action-color;
-      border-color: $secondary-text-color !important;
+      outline: 1px solid $secondary-background-color;
     }
   }
 }
