@@ -82,6 +82,7 @@ const computeButtonClasses = (value, index, colorMode) => {
     .option-active {
       color: $primary-text-color;
       background-color: $secondary-call-to-action-color;
+      border-color: $secondary-text-color !important;
     }
   }
 }
